@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>درة فارس الشمال للتجارة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Cairo',sans-serif;background:#0F0F1A;color:#fff;line-height:1.6}
+        .header{position:fixed;top:0;left:0;right:0;background:rgba(15,15,26,0.95);backdrop-filter:blur(20px);border-bottom:1px solid #27273A;z-index:1000}
+        .header-container{max-width:1400px;margin:0 auto;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center}
+        .logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none}
+        .logo-icon{width:45px;height:45px;background:linear-gradient(135deg,#4F46E5,#7C3AED);border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.5rem;color:#fff}
+        .logo-title{font-size:1.25rem;font-weight:800;color:#fff}
+        .nav{display:flex;gap:2rem;align-items:center}
+        .nav-link{color:#A1A1AA;text-decoration:none;font-weight:500;transition:all 0.3s}
+        .nav-link:hover{color:#fff}
+        .nav-cta{background:linear-gradient(135deg,#4F46E5,#7C3AED);color:#fff;padding:0.6rem 1.5rem;border-radius:8px;text-decoration:none;font-weight:600}
+        .hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,#0F0F1A,#1A1A2E,#312E81);padding-top:80px}
+        .hero-container{max-width:1400px;margin:0 auto;padding:4rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+        .hero-title{font-size:3.5rem;font-weight:900;line-height:1.2;margin-bottom:1.5rem}
+        .hero-title span{background:linear-gradient(135deg,#4F46E5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .hero-description{font-size:1.15rem;color:#A1A1AA;margin-bottom:2rem}
+        .hero-buttons{display:flex;gap:1rem;margin-bottom:3rem}
+        .btn-primary{background:linear-gradient(135deg,#4F46E5,#7C3AED);color:#fff;padding:1rem 2rem;border-radius:12px;text-decoration:none;font-weight:700;display:inline-flex;align-items:center;gap:0.5rem;transition:all 0.3s}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 40px rgba(79,70,229,0.6)}
+        .btn-secondary{background:transparent;color:#fff;padding:1rem 2rem;border-radius:12px;text-decoration:none;font-weight:700;border:2px solid #27273A;display:inline-flex;align-items:center;gap:0.5rem}
+        .hero-stats{display:flex;gap:2rem}
+        .stat-item{text-align:center}
+        .stat-number{font-size:2rem;font-weight:800;color:#6366F1}
+        .stat-label{font-size:0.85rem;color:#71717A}
+        .section-container{max-width:1400px;margin:0 auto;padding:6rem 2rem}
+        .section-header{text-align:center;margin-bottom:4rem}
+        .section-title{font-size:2.5rem;font-weight:800;margin-bottom:1rem}
+        .section-description{font-size:1.1rem;color:#A1A1AA;max-width:600px;margin:0 auto}
+        .categories-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+        .category-card{background:#1A1A2E;border:1px solid #27273A;border-radius:20px;padding:2rem;text-align:center;transition:all 0.3s;cursor:pointer}
+        .category-card:hover{transform:translateY(-5px);background:#252542;border-color:rgba(79,70,229,0.3)}
+        .category-icon{width:70px;height:70px;background:rgba(79,70,229,0.15);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1.5rem}
+        .category-card:hover .category-icon{background:linear-gradient(135deg,#4F46E5,#7C3AED);transform:scale(1.1)}
+        .category-name{font-size:1.25rem;font-weight:700;margin-bottom:0.5rem}
+        .category-count{font-size:0.9rem;color:#71717A}
+        .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2rem}
+        .product-card{background:#1A1A2E;border:1px solid #27273A;border-radius:20px;overflow:hidden;transition:all 0.3s}
+        .product-card:hover{transform:translateY(-8px);border-color:rgba(79,70,229,0.3);box-shadow:0 10px 15px rgba(0,0,0,0.5)}
+        .product-badge{position:absolute;top:1rem;left:1rem;background:linear-gradient(135deg,#4F46E5,#7C3AED);color:#fff;padding:0.3rem 0.8rem;border-radius:8px;font-size:0.8rem;font-weight:600}
+        .product-badge.discount{background:linear-gradient(135deg,#EF4444,#F97316)}
+        .product-image-wrapper{position:relative;height:220px;background:linear-gradient(135deg,#1A1A2E,#252542);display:flex;align-items:center;justify-content:center}
+        .product-image-placeholder{font-size:4rem;opacity:0.3}
+        .product-content{padding:1.5rem}
+        .product-category{font-size:0.85rem;color:#6366F1;font-weight:600;margin-bottom:0.5rem}
+        .product-name{font-size:1.1rem;font-weight:700;margin-bottom:0.75rem}
+        .product-description{font-size:0.9rem;color:#A1A1AA;margin-bottom:1rem}
+        .product-footer{display:flex;justify-content:space-between;align-items:center}
+        .product-price{font-size:1.25rem;font-weight:800;color:#6366F1}
+        .btn-add-cart{background:linear-gradient(135deg,#4F46E5,#7C3AED);color:#fff;border:none;padding:0.6rem 1.2rem;border-radius:10px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:0.4rem}
+        .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+        .feature-card{background:#1A1A2E;border:1px solid #27273A;border-radius:20px;padding:2.5rem;text-align:center;transition:all 0.3s}
+        .feature-card:hover{transform:translateY(-5px);background:#252542}
+        .feature-icon{width:80px;height:80px;background:linear-gradient(135deg,#4F46E5,#7C3AED);border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;margin:0 auto 1.5rem}
+        .feature-title{font-size:1.3rem;font-weight:700;margin-bottom:0.75rem}
+        .feature-description{font-size:0.95rem;color:#A1A1AA}
+        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+        .about-title{font-size:2.5rem;font-weight:800;margin-bottom:1.5rem}
+        .about-text{font-size:1.1rem;color:#A1A1AA;margin-bottom:1.5rem;line-height:1.8}
+        .about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2rem}
+        .about-stat{background:#1A1A2E;border:1px solid #27273A;border-radius:16px;padding:1.5rem;text-align:center}
+        .about-stat-number{font-size:2rem;font-weight:800;color:#6366F1}
+        .about-stat-label{font-size:0.9rem;color:#71717A}
+        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+        .contact-info{display:flex;flex-direction:column;gap:2rem}
+        .contact-item{display:flex;align-items:flex-start;gap:1rem;background:#1A1A2E;border:1px solid #27273A;border-radius:16px;padding:1.5rem}
+        .contact-icon{width:50px;height:50px;background:linear-gradient(135deg,#4F46E5,#7C3AED);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff}
+        .contact-details h3{font-size:1.1rem;font-weight:700;margin-bottom:0.25rem}
+        .contact-details p{font-size:0.95rem;color:#A1A1AA}
+        .contact-form{background:#1A1A2E;border:1px solid #27273A;border-radius:24px;padding:2.5rem}
+        .form-group{margin-bottom:1.5rem}
+        .form-label{display:block;font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;color:#A1A1AA}
+        .form-input{width:100%;background:#0F0F1A;border:1px solid #27273A;border-radius:12px;padding:1rem;color:#fff;font-family:'Cairo',sans-serif;font-size:1rem}
+        .form-input:focus{outline:none;border-color:#4F46E5}
+        .footer{background:#0A0A14;border-top:1px solid #27273A;padding:4rem 2rem 2rem}
+        .footer-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+        .footer-logo{display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem}
+        .footer-logo-icon{width:40px;height:40px;background:linear-gradient(135deg,#4F46E5,#7C3AED);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff}
+        .footer-description{font-size:0.9rem;color:#71717A;line-height:1.6}
+        .footer-social{display:flex;gap:0.75rem;margin-top:1rem}
+        .social-link{width:40px;height:40px;background:#1A1A2E;border:1px solid #27273A;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#A1A1AA;text-decoration:none;transition:all 0.3s}
+        .social-link:hover{background:linear-gradient(135deg,#4F46E5,#7C3AED);color:#fff}
+        .footer-column h3{font-size:1.1rem;font-weight:700;margin-bottom:1.5rem}
+        .footer-links{display:flex;flex-direction:column;gap:0.75rem}
+        .footer-link{color:#71717A;text-decoration:none;font-size:0.9rem;transition:all 0.3s}
+        .footer-link:hover{color:#6366F1}
+        .footer-bottom{max-width:1400px;margin:0 auto;padding-top:2rem;border-top:1px solid #27273A;display:flex;justify-content:space-between;align-items:center}
+        .footer-copyright{font-size:0.85rem;color:#71717A}
+        .reveal{opacity:0;transform:translateY(30px);transition:all 0.8s ease-out}
+        .reveal.active{opacity:1;transform:translateY(0)}
+        @media(max-width:1024px){.hero-container,.about-grid,.contact-grid{grid-template-columns:1fr}.hero-title{font-size:2.5rem}.footer-grid{grid-template-columns:1fr 1fr}}
+        @media(max-width:768px){.nav{display:none}.mobile-menu-btn{display:block}.hero-title{font-size:2rem}.section-title{font-size:1.8rem}.categories-grid{grid-template-columns:repeat(2,1fr)}.products-grid{grid-template-columns:1fr}.features-grid{grid-template-columns:1fr}.about-stats{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr;text-align:center}.footer-social{justify-content:center}.footer-bottom{flex-direction:column;text-align:center}}
+        @media(max-width:480px){.hero-title{font-size:1.6rem}.hero-buttons{flex-direction:column}.categories-grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">د</div>
+                <div class="logo-text">
+                    <span class="logo-title">درة فارس الشمال</span>
+                </div>
+            </a>
+            <nav class="nav">
+                <a href="#home" class="nav-link">الرئيسية</a>
+                <a href="#categories" class="nav-link">الأقسام</a>
+                <a href="#products" class="nav-link">المنتجات</a>
+                <a href="#about" class="nav-link">عن الشركة</a>
+                <a href="#contact" class="nav-link">تواصل معنا</a>
+                <a href="https://wa.me/" class="nav-cta" target="_blank"><i class="fab fa-whatsapp"></i> واتساب</a>
+            </nav>
+            <button class="mobile-menu-btn" onclick="alert('قائمة الجوال')" style="display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer">☰</button>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i>
+                    <span>أفضل متجر تقنية في المنطقة</span>
+                </div>
+                <h1 class="hero-title">وجهتك الأولى لكل ما يتعلق بـ <span>التقنية</span></h1>
+                <p class="hero-description">طابعات، كمبيوتر، رامات، هاردات، وصلات إلكترونية، بروجكتور، وكل إكسسواراتك التقنية بجودة عالية وأسعار تنافسية.</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn-primary"><i class="fas fa-shopping-bag"></i> تسوق الآن</a>
+                    <a href="#about" class="btn-secondary"><i class="fas fa-info-circle"></i> تعرف علينا</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item"><span class="stat-number">+1000</span><span class="stat-label">منتج متنوع</span></div>
+                    <div class="stat-item"><span class="stat-number">+500</span><span class="stat-label">عميل سعيد</span></div>
+                    <div class="stat-item"><span class="stat-number">24/7</span><span class="stat-label">دعم فني</span></div>
+                </div>
+            </div>
+            <div style="background:linear-gradient(135deg,#1A1A2E,#312E81,#4F46E5);height:500px;border-radius:24px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2rem">
+                <div style="font-size:8rem;opacity:0.3">💻</div>
+                <div style="text-align:center">
+                    <div style="font-size:1.5rem;font-weight:700;margin-bottom:0.5rem">أحدث المنتجات التقنية</div>
+                    <div style="color:#A1A1AA">جودة عالية - أسعار تنافسية</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="categories">
+        <div class="section-header reveal">
+            <div class="section-title">أقسامنا المتنوعة</div>
+            <p class="section-description">اختر القسم اللي تبيه واكتشف مجموعة واسعة من المنتجات عالية الجودة</p>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card reveal"><div class="category-icon">🖨️</div><h3 class="category-name">طابعات</h3><p class="category-count">HP, Canon, Epson, Brother</p></div>
+            <div class="category-card reveal"><div class="category-icon">💻</div><h3 class="category-name">كمبيوتر</h3><p class="category-count">أجهزة ولابتوب</p></div>
+            <div class="category-card reveal"><div class="category-icon">🧠</div><h3 class="category-name">رامات</h3><p class="category-count">DDR4, DDR5</p></div>
+            <div class="category-card reveal"><div class="category-icon">💾</div><h3 class="category-name">هاردات</h3><p class="category-count">SSD, HDD</p></div>
+            <div class="category-card reveal"><div class="category-icon">🔌</div><h3 class="category-name">وصلات</h3><p class="category-count">HDMI, USB, DisplayPort</p></div>
+            <div class="category-card reveal"><div class="category-icon">📽️</div><h3 class="category-name">بروجكتور</h3><p class="category-count">Epson, ViewSonic, BenQ</p></div>
+            <div class="category-card reveal"><div class="category-icon">🎧</div><h3 class="category-name">إكسسوارات</h3><p class="category-count">ماوس، كيبورد، سماعات</p></div>
+        </div>
+    </section>
+
+    <section class="section-container" id="products" style="background:linear-gradient(180deg,#0F0F1A,#0A0A14)">
+        <div class="section-header reveal">
+            <div class="section-title">منتجاتنا المميزة</div>
+            <p class="section-description">اكتشف أحدث المنتجات التقنية بأفضل الأسعار</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card reveal">
+                <div class="product-image-wrapper"><div class="product-image-placeholder">🖨️</div></div>
+                <div class="product-content">
+                    <div class="product-category"><i class="fas fa-print"></i> طابعات</div>
+                    <h3 class="product-name">طابعة HP LaserJet Pro M404n</h3>
+                    <p class="product-description">طابعة ليزر أحادية اللون، سرعة طباعة 40 صفحة/دقيقة</p>
+                    <div class="product-footer"><div class="product-price"><span class="currency">ج.م</span> 4,500</div><button class="btn-add-cart"><i class="fas fa-cart-plus"></i> أضف</button></div>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-image-wrapper"><div class="product-image-placeholder">🖨️</div></div>
+                <div class="product-content">
+                    <div class="product-category"><i class="fas fa-print"></i> طابعات</div>
+                    <h3 class="product-name">طابعة Canon PIXMA G6020</h3>
+                    <p class="product-description">طابعة حبر فائقة الاقتصاد، خزان حبر قابل لإعادة الملء</p>
+                    <div class="product-footer"><div class="product-price"><span class="currency">ج.م</span> 3,800</div><button class="btn-add-cart"><i class="fas fa-cart-plus"></i> أضف</button></div>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-image-wrapper"><div class="product-image-placeholder">💻</div></div>
+                <div class="product-content">
+                    <div class="product-category"><i class="fas fa-laptop"></i> كمبيوتر</div>
+                    <h3 class="product-name">كمبيوتر Dell OptiPlex 7090</h3>
+                    <p class="product-description">Intel Core i7، 16GB رام، 512GB SSD</p>
+                    <div class="product-footer"><div class="product-price"><span class="currency">ج.م</span> 15,500</div><button class="btn-add-cart"><i class="fas fa-cart-plus"></i> أضف</button></div>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-image-wrapper"><div class="product-image-placeholder">💻</div></div>
+                <div class="product-content">
+                    <div class="product-category"><i class="fas fa-laptop"></i> كمبيوتر</div>
+                    <h3 class="product-name">لابتوب HP ProBook 450 G8</h3>
+                    <p class="product-description">15.6 بوصة، Intel Core i5، شاشة FHD</p>
+                    <div class="product-footer"><div class="product-price"><span class="currency">ج.م</span> 12,800</div><button class="btn-add-cart"><i class="fas fa-cart-plus"></i> أضف</button></div>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-image-wrapper"><div class="product-image-placeholder">🧠</div></div>
+                <div class="product-content">
+                    <div class="product-category"><i class="fas fa-memory"></i> رامات</div>
+                    <h3 class="product-name">رام Kingston DDR4 16GB</h3>
+                    <p class="product-description">سرعة 3200MHz، مثالية للألعاب</p>
+                    <div class="product-footer"><div class="product-price"><span class="currency">ج.م</span> 1,200</div><button class="btn-add-cart"><i class="fas fa-cart-plus"></i> أضف</button></div>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-image-wrapper"><div class="product-image-placeholder">💾</div></div>
+                <div class="product-content">
+                    <div class="product-category"><i class="fas fa-hdd"></i> هاردات</div>
+                    <h3 class="product-name">SSD Samsung 980 NVMe 1TB</h3>
+                    <p class="product-description">سرعة قراءة 3500MB/s، سرعة كتابة 3000MB/s</p>
+                    <div class="product-footer"><div class="product-price"><span class="currency">ج.م</span> 2,800</div><button class="btn-add-cart"><i class="fas fa-cart-plus"></i> أضف</button></div>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-image-wrapper"><div class="product-image-placeholder">🔌</div></div>
+                <div class="product-content">
+                    <div class="product-category"><i class="fas fa-plug"></i> وصلات</div>
+                    <h3 class="product-name">كابل HDMI 2.1 UGREEN 2M</h3>
+                    <p class="product-description">يدعم 8K@60Hz و 4K@120Hz</p>
+                    <div class="product-footer"><div class="product-price"><span class="currency">ج.م</span> 350</div><button class="btn-add-cart"><i class="fas fa-cart-plus"></i> أضف</button></div>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-image-wrapper"><div class="product-image-placeholder">📽️</div></div>
+                <div class="product-content">
+                    <div class="product-category"><i class="fas fa-video"></i> بروجكتور</div>
+                    <h3 class="product-name">بروجكتور Epson EB-E01 XGA</h3>
+                    <p class="product-description">سطوع 3300 لومن، دقة XGA</p>
+                    <div class="product-footer"><div class="product-price"><span class="currency">ج.م</span> 8,500</div><button class="btn-add-cart"><i class="fas fa-cart-plus"></i> أضف</button></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <div class="section-header reveal">
+            <div class="section-title">مميزاتنا</div>
+            <p class="section-description">نحن نقدم أكثر من مجرد منتجات، نقدم تجربة شراء كاملة</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3 class="feature-title">ضمان شامل</h3><p class="feature-description">ضمان على جميع المنتجات مع إمكانية الاستبدال خلال 14 يوم</p></div>
+            <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-shipping-fast"></i></div><h3 class="feature-title">توصيل سريع</h3><p class="feature-description">توصيل لجميع المناطق خلال 24-48 ساعة مع تتبع الشحنة</p></div>
+            <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-headset"></i></div><h3 class="feature-title">دعم فني</h3><p class="feature-description">دعم تقني على مدار الساعة عبر الواتساب والتلفون</p></div>
+            <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-tag"></i></div><h3 class="feature-title">أفضل الأسعار</h3><p class="feature-description">أسعار تنافسية مضمونة مع عروض وخصومات مستمرة</p></div>
+        </div>
+    </section>
+
+    <section class="section-container" id="about" style="background:linear-gradient(180deg,#0A0A14,#0F0F1A)">
+        <div class="about-grid">
+            <div class="reveal">
+                <div style="background:linear-gradient(135deg,#1A1A2E,#312E81,#4F46E5);height:500px;border-radius:24px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2rem">
+                    <div style="font-size:6rem;opacity:0.3">🏢</div>
+                    <div style="text-align:center">
+                        <div style="font-size:1.5rem;font-weight:700;margin-bottom:0.5rem">شركة درة فارس الشمال</div>
+                        <div style="color:#A1A1AA">خبرة +10 سنوات في مجال التقنية</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-content">
+                <h2 class="about-title">نحن درة فارس الشمال للتجارة</h2>
+                <p class="about-text">شركة رائدة في مجال بيع المنتجات التقنية والإلكترونية. نقدم لعملائنا أفضل المنتجات من أشهر الماركات العالمية بأسعار تنافسية وخدمة ما بعد البيع متميزة.</p>
+                <p class="about-text">نؤمن بأن التقنية يجب أن تكون متاحة للجميع، ولذلك نحرص على توفير منتجات عالية الجودة تناسب جميع الاحتياجات والميزانيات.</p>
+                <div class="about-stats">
+                    <div class="about-stat"><span class="about-stat-number">+10</span><span class="about-stat-label">سنوات خبرة</span></div>
+                    <div class="about-stat"><span class="about-stat-number">+500</span><span class="about-stat-label">عميل سعيد</span></div>
+                    <div class="about-stat"><span class="about-stat-number">+1000</span><span class="about-stat-label">منتج متاح</span></div>
+                    <div class="about-stat"><span class="about-stat-number">4.9/5</span><span class="about-stat-label">تقييم العملاء</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="contact">
+        <div class="section-header reveal">
+            <div class="section-title">نحن هنا لمساعدتك</div>
+            <p class="section-description">تواصل معنا للاستفسارات أو الطلبات الخاصة</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info reveal">
+                <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-details"><h3>العنوان</h3><p>درة فارس الشمال للتجارة</p></div></div>
+                <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone"></i></div><div class="contact-details"><h3>التليفون</h3><p>اتصل بنا للاستفسارات</p></div></div>
+                <div class="contact-item"><div class="contact-icon"><i class="fab fa-whatsapp"></i></div><div class="contact-details"><h3>واتساب</h3><p>تواصل معنا مباشرة</p></div></div>
+                <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-details"><h3>البريد الإلكتروني</h3><p>info@df-alshamal.com</p></div></div>
+            </div>
+            <div class="contact-form reveal">
+                <h3 style="font-size:1.5rem;font-weight:700;margin-bottom:1.5rem">أرسل لنا رسالة</h3>
+                <form onsubmit="event.preventDefault();alert('تم إرسال رسالتك!');">
+                    <div class="form-group"><label class="form-label">الاسم</label><input type="text" class="form-input" placeholder="اكتب اسمك" required></div>
+                    <div class="form-group"><label class="form-label">البريد الإلكتروني</label><input type="email" class="form-input" placeholder="example@email.com" required></div>
+                    <div class="form-group"><label class="form-label">الموضوع</label><input type="text" class="form-input" placeholder="موضوع الرسالة" required></div>
+                    <div class="form-group"><label class="form-label">الرسالة</label><textarea class="form-input" placeholder="اكتب رسالتك هنا..." required></textarea></div>
+                    <button type="submit" class="btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> إرسال الرسالة</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo"><div class="footer-logo-icon">د</div><span style="font-weight:700">درة فارس الشمال</span></div>
+                <p class="footer-description">شركة رائدة في مجال بيع المنتجات التقنية والإلكترونية. نقدم لعملائنا أفضل المنتجات من أشهر الماركات العالمية.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <div class="footer-links">
+                    <a href="#home" class="footer-link">الرئيسية</a>
+                    <a href="#categories" class="footer-link">الأقسام</a>
+                    <a href="#products" class="footer-link">المنتجات</a>
+                    <a href="#about" class="footer-link">عن الشركة</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>الأقسام</h3>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">طابعات</a>
+                    <a href="#" class="footer-link">كمبيوتر</a>
+                    <a href="#" class="footer-link">رامات</a>
+                    <a href="#" class="footer-link">هاردات</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <div class="footer-links">
+                    <a href="#contact" class="footer-link">البريد الإلكتروني</a>
+                    <a href="#" class="footer-link">واتساب</a>
+                    <a href="#" class="footer-link">التليفون</a>
+                    <a href="#" class="footer-link">العنوان</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2026 شركة درة فارس الشمال للتجارة. جميع الحقوق محفوظة.</p>
+            <div class="footer-payment">
+                <div class="payment-icon">Visa</div>
+                <div class="payment-icon">MC</div>
+                <div class="payment-icon">PayPal</div>
+                <div class="payment-icon">Fawry</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll effect for header
+        window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('scrolled',window.scrollY>50)});
+
+        // Scroll reveal
+        const reveals=document.querySelectorAll('.reveal');
+        const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('active')})},{threshold:0.1});
+        reveals.forEach(el=>observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click',function(e){e.preventDefault();document.querySelector(this.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})})});
+    </script>
+</body>
+</html>
