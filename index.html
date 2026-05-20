@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(شركة درة فارس الشمال للتجارة)</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Cairo,sans-serif}
+body{background:#f5f7fa;color:#0a1628;line-height:1.6}
+a{text-decoration:none;color:inherit}
+.container{max-width:1200px;margin:auto;padding:0 15px}
+
+/* Header */
+header{background:linear-gradient(135deg,#0a1628 0%,#001a33 100%);color:#fff;padding:15px 0;position:sticky;top:0;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.header-flex{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:45px;height:45px;background:linear-gradient(135deg,#0066cc,#004c99);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.logo-text h1{font-size:18px;font-weight:800}
+.logo-text span{font-size:11px;color:#aaa;display:block}
+nav ul{display:flex;list-style:none;gap:20px;flex-wrap:wrap}
+nav a{color:#fff;font-weight:600;font-size:14px;transition:.3s}
+nav a:hover{color:#00d4aa}
+.cart-btn{background:rgba(255,255,255,.1);border:none;color:#fff;padding:8px 15px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:5px}
+.cart-count{background:#00d4aa;color:#0a1628;padding:2px 8px;border-radius:50%;font-weight:800;font-size:12px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#0a1628 0%,#001a33 50%,#0066cc22 100%);color:#fff;padding:80px 0;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:500px;height:500px;background:rgba(0,102,204,.1);border-radius:50%}
+.hero h2{font-size:42px;font-weight:900;margin-bottom:15px}
+.hero p{font-size:18px;color:#b0c4de;max-width:600px;margin:0 auto 30px}
+.hero-btns{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,#0066cc,#004c99);color:#fff;padding:14px 35px;border-radius:10px;font-weight:700;font-size:16px;display:inline-flex;align-items:center;gap:8px;transition:.3s;border:none;cursor:pointer}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,102,204,.4)}
+.btn-secondary{background:rgba(255,255,255,.1);color:#fff;padding:14px 35px;border-radius:10px;font-weight:700;font-size:16px;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.2);transition:.3s}
+.btn-secondary:hover{background:rgba(255,255,255,.2)}
+
+/* Stats */
+.stats{display:flex;justify-content:center;gap:40px;margin-top:40px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat strong{display:block;font-size:32px;color:#00d4aa;font-weight:800}
+.stat span{font-size:14px;color:#94a3b8}
+
+/* Section Title */
+.section-title{text-align:center;padding:60px 0 30px}
+.section-title h3{font-size:32px;font-weight:800;color:#0a1628;margin-bottom:10px}
+.section-title p{color:#64748b;font-size:16px}
+
+/* Categories */
+.categories{padding-bottom:40px}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:15px}
+.cat-card{background:#fff;border-radius:15px;padding:25px 15px;text-align:center;cursor:pointer;transition:.3s;border:1px solid #e2e8f0}
+.cat-card:hover{background:linear-gradient(135deg,#0066cc,#004c99);color:#fff;transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,102,204,.2)}
+.cat-card:hover .cat-icon{color:#fff!important}
+.cat-card:hover .cat-name{color:#fff}
+.cat-card:hover .cat-en{color:rgba(255,255,255,.8)}
+.cat-icon{font-size:35px;margin-bottom:10px;display:block}
+.cat-name{font-weight:800;font-size:15px;display:block;margin-bottom:3px}
+.cat-en{font-size:12px;color:#94a3b8}
+
+/* Products */
+.products{padding-bottom:60px}
+.filter-btns{display:flex;justify-content:center;gap:10px;margin-bottom:30px;flex-wrap:wrap}
+.filter-btn{background:#fff;border:1px solid #e2e8f0;padding:8px 20px;border-radius:25px;cursor:pointer;font-weight:600;font-size:14px;transition:.3s}
+.filter-btn.active,.filter-btn:hover{background:#0066cc;color:#fff;border-color:#0066cc}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.prod-card{background:#fff;border-radius:15px;overflow:hidden;border:1px solid #e2e8f0;transition:.3s}
+.prod-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(0,102,204,.15)}
+.prod-img{height:180px;background:linear-gradient(135deg,#e6f2ff,#dbeafe);display:flex;align-items:center;justify-content:center;font-size:60px}
+.prod-body{padding:20px}
+.prod-tag{display:inline-block;background:#e6f2ff;color:#0066cc;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:10px}
+.prod-name{font-weight:800;font-size:16px;margin-bottom:8px;color:#0a1628}
+.prod-desc{font-size:13px;color:#64748b;margin-bottom:15px;line-height:1.5}
+.prod-price{display:flex;justify-content:space-between;align-items:center}
+.prod-price strong{font-size:22px;color:#0066cc}
+.prod-price button{background:#0066cc;color:#fff;border:none;padding:8px 18px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px;transition:.3s}
+.prod-price button:hover{background:#004c99}
+
+/* About */
+.about{background:#fff;padding:60px 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about-text h3{font-size:28px;font-weight:800;margin-bottom:15px}
+.about-text p{color:#64748b;margin-bottom:20px}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
+.feature{display:flex;gap:12px;align-items:flex-start}
+.feature i{font-size:24px;color:#0066cc;background:#e6f2ff;width:45px;height:45px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.feature h4{font-weight:800;margin-bottom:3px}
+.feature p{font-size:13px;color:#64748b}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.stat-card{background:linear-gradient(135deg,#0066cc,#004c99);color:#fff;padding:25px;border-radius:15px;text-align:center}
+.stat-card:nth-child(2),.stat-card:nth-child(3){background:#f8fafc;border:1px solid #e2e8f0;color:#0a1628}
+.stat-card i{font-size:30px;margin-bottom:10px;display:block}
+.stat-card strong{font-size:24px;display:block;margin-bottom:5px}
+.stat-card span{font-size:13px;opacity:.9}
+
+/* Contact */
+.contact{background:linear-gradient(135deg,#0a1628,#001a33);color:#fff;padding:60px 0}
+.contact h3{text-align:center;font-size:28px;margin-bottom:40px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:30px}
+.contact-info{display:flex;flex-direction:column;gap:20px}
+.info-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:20px;border-radius:15px}
+.info-card i{font-size:22px;color:#00d4aa;margin-bottom:10px;display:block}
+.info-card h4{font-weight:800;margin-bottom:5px}
+.info-card p{font-size:13px;color:#94a3b8;margin-bottom:8px}
+.info-card a{color:#00d4aa;font-weight:700}
+.contact-form{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:30px;border-radius:15px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:15px}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;padding:12px 15px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;font-size:14px}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:#94a3b8}
+.contact-form textarea{resize:none;height:100px}
+.contact-form button{background:linear-gradient(135deg,#00d4aa,#00b894);color:#fff;border:none;padding:14px;border-radius:10px;font-weight:800;font-size:16px;cursor:pointer;width:100%;transition:.3s}
+.contact-form button:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,212,170,.3)}
+
+/* Footer */
+footer{background:#060f1e;color:#94a3b8;padding:50px 0 20px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;margin-bottom:40px}
+.footer-col h4{color:#fff;font-weight:800;margin-bottom:15px}
+.footer-col p{font-size:14px;line-height:1.7}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:10px}
+.footer-col a:hover{color:#00d4aa}
+.social{display:flex;gap:10px;margin-top:15px}
+.social a{width:35px;height:35px;background:rgba(255,255,255,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;transition:.3s}
+.social a:hover{background:#0066cc}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:13px}
+
+/* Cart Sidebar */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;display:none}
+.cart-sidebar{position:fixed;left:0;top:0;height:100%;width:350px;max-width:90%;background:#fff;z-index:2001;transform:translateX(-100%);transition:.3s;box-shadow:10px 0 40px rgba(0,0,0,.2);display:flex;flex-direction:column}
+.cart-sidebar.open{transform:translateX(0)}
+.cart-header{padding:20px;border-bottom:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center}
+.cart-header h3{font-weight:800}
+.close-cart{background:none;border:none;font-size:24px;cursor:pointer;color:#64748b}
+.cart-items{flex:1;overflow-y:auto;padding:20px}
+.cart-empty{text-align:center;color:#94a3b8;padding:40px 0}
+.cart-empty i{font-size:50px;margin-bottom:15px;display:block}
+.cart-item{display:flex;gap:12px;margin-bottom:15px;padding:15px;background:#f8fafc;border-radius:10px}
+.cart-item-icon{width:50px;height:50px;background:linear-gradient(135deg,#e6f2ff,#dbeafe);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.cart-item-info{flex:1}
+.cart-item-name{font-weight:700;font-size:14px;margin-bottom:3px}
+.cart-item-price{color:#0066cc;font-weight:800}
+.cart-item-qty{display:flex;align-items:center;gap:8px;margin-top:5px}
+.qty-btn{width:25px;height:25px;border:1px solid #e2e8f0;background:#fff;border-radius:5px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.remove-item{color:#ef4444;margin-right:auto;cursor:pointer;font-size:18px}
+.cart-footer{padding:20px;border-top:1px solid #e2e8f0;background:#f8fafc}
+.cart-total{display:flex;justify-content:space-between;margin-bottom:15px;font-size:18px}
+.cart-total strong{color:#0066cc;font-size:24px}
+.checkout-btn{background:linear-gradient(135deg,#00d4aa,#00b894);color:#fff;border:none;padding:14px;border-radius:10px;font-weight:800;font-size:16px;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:8px}
+
+/* Toast */
+.toast{position:fixed;bottom:30px;right:30px;background:#0a1628;color:#fff;padding:15px 25px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.3);display:flex;align-items:center;gap:10px;transform:translateY(100px);opacity:0;transition:.3s;z-index:3000}
+.toast.show{transform:translateY(0);opacity:1}
+.toast i{color:#00d4aa;font-size:20px}
+
+/* Responsive */
+@media(max-width:768px){
+.about-grid,.contact-grid{grid-template-columns:1fr}
+.features{grid-template-columns:1fr}
+.form-row{grid-template-columns:1fr}
+.hero h2{font-size:28px}
+.stat strong{font-size:24px}
+.cart-sidebar{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+<div class="container">
+<div class="header-flex">
+<div class="logo">
+<div class="logo-icon">⚡</div>
+<div class="logo-text">
+<h1>(شركة درة فارس الشمال للتجارة)</h1>
+<span>Dora Fares Al Shamal</span>
+</div>
+</div>
+<nav>
+<ul>
+<li><a href="#home">الرئيسية</a></li>
+<li><a href="#categories">التصنيفات</a></li>
+<li><a href="#products">المنتجات</a></li>
+<li><a href="#about">عن الشركة</a></li>
+<li><a href="#contact">تواصل معنا</a></li>
+</ul>
+</nav>
+<button class="cart-btn" onclick="toggleCart()">
+🛒 <span class="cart-count" id="cartCount">0</span>
+</button>
+</div>
+</div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="home">
+<div class="container">
+<h2>(شركة درة فارس الشمال للتجارة)</h2>
+<p>وجهتك الأولى لكل ما يتعلق بالتقنية. طابعات، كمبيوتر، رامات، هاردات، وصلات إلكترونية، بروجكتور، وكل إكسسواراتك التقنية بجودة عالية وأسعار تنافسية.</p>
+<div class="hero-btns">
+<a href="#products" class="btn-primary">🛍️ تسوق الآن</a>
+<a href="#about" class="btn-secondary">ℹ️ تعرف علينا</a>
+</div>
+<div class="stats">
+<div class="stat"><strong>+1000</strong><span>منتج متنوع</span></div>
+<div class="stat"><strong>+500</strong><span>عميل سعيد</span></div>
+<div class="stat"><strong>24/7</strong><span>دعم فني</span></div>
+</div>
+</div>
+</section>
+
+<!-- Categories -->
+<section class="categories" id="categories">
+<div class="container">
+<div class="section-title">
+<h3>استكشف منتجاتنا</h3>
+<p>اختر التصنيف المناسب واكتشف مجموعة واسعة من المنتجات التقنية عالية الجودة</p>
+</div>
+<div class="cat-grid">
+<div class="cat-card" onclick="filterProducts('all')">
+<span class="cat-icon" style="color:#0066cc">🖨️</span>
+<span class="cat-name">طابعات</span>
+<span class="cat-en">Printers</span>
+</div>
+<div class="cat-card" onclick="filterProducts('computers')">
+<span class="cat-icon" style="color:#0066cc">💻</span>
+<span class="cat-name">كمبيوتر</span>
+<span class="cat-en">Computers</span>
+</div>
+<div class="cat-card" onclick="filterProducts('ram')">
+<span class="cat-icon" style="color:#0066cc">🧠</span>
+<span class="cat-name">رامات</span>
+<span class="cat-en">RAM</span>
+</div>
+<div class="cat-card" onclick="filterProducts('storage')">
+<span class="cat-icon" style="color:#0066cc">💾</span>
+<span class="cat-name">هاردات</span>
+<span class="cat-en">Storage</span>
+</div>
+<div class="cat-card" onclick="filterProducts('cables')">
+<span class="cat-icon" style="color:#0066cc">🔌</span>
+<span class="cat-name">وصلات</span>
+<span class="cat-en">Cables</span>
+</div>
+<div class="cat-card" onclick="filterProducts('projectors')">
+<span class="cat-icon" style="color:#0066cc">📽️</span>
+<span class="cat-name">بروجكتور</span>
+<span class="cat-en">Projectors</span>
+</div>
+<div class="cat-card" onclick="filterProducts('accessories')">
+<span class="cat-icon" style="color:#0066cc">🎧</span>
+<span class="cat-name">إكسسوارات</span>
+<span class="cat-en">Accessories</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Products -->
+<section class="products" id="products">
+<div class="container">
+<div class="section-title">
+<h3>منتجاتنا</h3>
+<p>أحدث المنتجات التقنية بأفضل الأسعار</p>
+</div>
+<div class="filter-btns">
+<button class="filter-btn active" onclick="filterProducts('all')">الكل</button>
+<button class="filter-btn" onclick="filterProducts('printers')">طابعات</button>
+<button class="filter-btn" onclick="filterProducts('computers')">كمبيوتر</button>
+<button class="filter-btn" onclick="filterProducts('ram')">رامات</button>
+<button class="filter-btn" onclick="filterProducts('storage')">هاردات</button>
+<button class="filter-btn" onclick="filterProducts('cables')">وصلات</button>
+<button class="filter-btn" onclick="filterProducts('projectors')">بروجكتور</button>
+<button class="filter-btn" onclick="filterProducts('accessories')">إكسسوارات</button>
+</div>
+<div class="prod-grid" id="productsGrid">
+<div class="prod-card" data-category="printers">
+<div class="prod-img">🖨️</div>
+<div class="prod-body">
+<span class="prod-tag">طابعات</span>
+<h4 class="prod-name">طابعة HP LaserJet Pro M404n</h4>
+<p class="prod-desc">طابعة ليزر أحادية اللون، سرعة طباعة 40 صفحة/دقيقة</p>
+<div class="prod-price">
+<strong>1299 ر.س</strong>
+<button onclick="addToCart('طابعة HP LaserJet Pro M404n', 1299)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="printers">
+<div class="prod-img">🖨️</div>
+<div class="prod-body">
+<span class="prod-tag">طابعات</span>
+<h4 class="prod-name">طابعة Canon PIXMA G6020</h4>
+<p class="prod-desc">طابعة حبر فائقة الاقتصاد، خزان حبر قابل لإعادة الملء</p>
+<div class="prod-price">
+<strong>999 ر.س</strong>
+<button onclick="addToCart('طابعة Canon PIXMA G6020', 999)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="printers">
+<div class="prod-img">🖨️</div>
+<div class="prod-body">
+<span class="prod-tag">طابعات</span>
+<h4 class="prod-name">طابعة Epson EcoTank L3250</h4>
+<p class="prod-desc">طابعة 3 في 1 بتقنية EcoTank، تكلفة طباعة منخفضة</p>
+<div class="prod-price">
+<strong>849 ر.س</strong>
+<button onclick="addToCart('طابعة Epson EcoTank L3250', 849)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="printers">
+<div class="prod-img">🖨️</div>
+<div class="prod-body">
+<span class="prod-tag">طابعات</span>
+<h4 class="prod-name">طابعة Brother HL-L2350DW</h4>
+<p class="prod-desc">طابعة ليزر مع WiFi، طباعة تلقائية على الوجهين</p>
+<div class="prod-price">
+<strong>749 ر.س</strong>
+<button onclick="addToCart('طابعة Brother HL-L2350DW', 749)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="computers">
+<div class="prod-img">💻</div>
+<div class="prod-body">
+<span class="prod-tag">كمبيوتر</span>
+<h4 class="prod-name">كمبيوتر Dell OptiPlex 7090</h4>
+<p class="prod-desc">كمبيوتر مكتبي للأعمال، Intel Core i7، 16GB رام</p>
+<div class="prod-price">
+<strong>3499 ر.س</strong>
+<button onclick="addToCart('كمبيوتر Dell OptiPlex 7090', 3499)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="computers">
+<div class="prod-img">💻</div>
+<div class="prod-body">
+<span class="prod-tag">كمبيوتر</span>
+<h4 class="prod-name">لابتوب HP ProBook 450 G8</h4>
+<p class="prod-desc">لابتوب أعمال 15.6 بوصة، Intel Core i5</p>
+<div class="prod-price">
+<strong>2899 ر.س</strong>
+<button onclick="addToCart('لابتوب HP ProBook 450 G8', 2899)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="computers">
+<div class="prod-img">💻</div>
+<div class="prod-body">
+<span class="prod-tag">كمبيوتر</span>
+<h4 class="prod-name">كمبيوتر Lenovo ThinkCentre M70q</h4>
+<p class="prod-desc">كمبيوتر صغير الحجم، أداء قوي بتصميم مدمج</p>
+<div class="prod-price">
+<strong>2199 ر.س</strong>
+<button onclick="addToCart('كمبيوتر Lenovo ThinkCentre M70q', 2199)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="computers">
+<div class="prod-img">💻</div>
+<div class="prod-body">
+<span class="prod-tag">كمبيوتر</span>
+<h4 class="prod-name">لابتوب Dell Latitude 3520</h4>
+<p class="prod-desc">لابتوب أعمال موثوق، شاشة 15.6 بوصة FHD</p>
+<div class="prod-price">
+<strong>2599 ر.س</strong>
+<button onclick="addToCart('لابتوب Dell Latitude 3520', 2599)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="ram">
+<div class="prod-img">🧠</div>
+<div class="prod-body">
+<span class="prod-tag">رامات</span>
+<h4 class="prod-name">رام Kingston DDR4 16GB</h4>
+<p class="prod-desc">ذاكرة Kingston FURY Beast DDR4، سرعة 3200MHz</p>
+<div class="prod-price">
+<strong>299 ر.س</strong>
+<button onclick="addToCart('رام Kingston DDR4 16GB', 299)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="ram">
+<div class="prod-img">🧠</div>
+<div class="prod-body">
+<span class="prod-tag">رامات</span>
+<h4 class="prod-name">رام Corsair Vengeance DDR4 32GB</h4>
+<p class="prod-desc">ذاكرة Corsair Vengeance RGB Pro، سرعة 3600MHz</p>
+<div class="prod-price">
+<strong>549 ر.س</strong>
+<button onclick="addToCart('رام Corsair Vengeance DDR4 32GB', 549)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="ram">
+<div class="prod-img">🧠</div>
+<div class="prod-body">
+<span class="prod-tag">رامات</span>
+<h4 class="prod-name">رام Crucial DDR4 8GB</h4>
+<p class="prod-desc">ذاكرة Crucial DDR4 موثوقة، 8GB، سرعة 2666MHz</p>
+<div class="prod-price">
+<strong>149 ر.س</strong>
+<button onclick="addToCart('رام Crucial DDR4 8GB', 149)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="ram">
+<div class="prod-img">🧠</div>
+<div class="prod-body">
+<span class="prod-tag">رامات</span>
+<h4 class="prod-name">رام G.Skill Trident Z5 DDR5 32GB</h4>
+<p class="prod-desc">ذاكرة DDR5 الجيل الجديد، سرعة 5600MHz</p>
+<div class="prod-price">
+<strong>799 ر.س</strong>
+<button onclick="addToCart('رام G.Skill Trident Z5 DDR5 32GB', 799)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="storage">
+<div class="prod-img">💾</div>
+<div class="prod-body">
+<span class="prod-tag">هاردات</span>
+<h4 class="prod-name">SSD Samsung 980 NVMe 1TB</h4>
+<p class="prod-desc">قرص SSD NVMe M.2 سعة 1TB، سرعة قراءة 3500MB/s</p>
+<div class="prod-price">
+<strong>449 ر.س</strong>
+<button onclick="addToCart('SSD Samsung 980 NVMe 1TB', 449)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="storage">
+<div class="prod-img">💾</div>
+<div class="prod-body">
+<span class="prod-tag">هاردات</span>
+<h4 class="prod-name">SSD Kingston NV2 500GB</h4>
+<p class="prod-desc">قرص SSD NVMe PCIe 4.0، سعة 500GB</p>
+<div class="prod-price">
+<strong>199 ر.س</strong>
+<button onclick="addToCart('SSD Kingston NV2 500GB', 199)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="storage">
+<div class="prod-img">💾</div>
+<div class="prod-body">
+<span class="prod-tag">هاردات</span>
+<h4 class="prod-name">هارد WD Blue 2TB</h4>
+<p class="prod-desc">قرص صلب 3.5 بوصة سعة 2TB، سرعة 7200RPM</p>
+<div class="prod-price">
+<strong>299 ر.س</strong>
+<button onclick="addToCart('هارد WD Blue 2TB', 299)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="storage">
+<div class="prod-img">💾</div>
+<div class="prod-body">
+<span class="prod-tag">هاردات</span>
+<h4 class="prod-name">SSD Crucial MX500 1TB</h4>
+<p class="prod-desc">قرص SSD SATA 2.5 بوصة سعة 1TB</p>
+<div class="prod-price">
+<strong>379 ر.س</strong>
+<button onclick="addToCart('SSD Crucial MX500 1TB', 379)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="cables">
+<div class="prod-img">🔌</div>
+<div class="prod-body">
+<span class="prod-tag">وصلات</span>
+<h4 class="prod-name">كابل HDMI 2.1 UGREEN 2M</h4>
+<p class="prod-desc">كابل HDMI 2.1، يدعم 8K@60Hz و 4K@120Hz</p>
+<div class="prod-price">
+<strong>89 ر.س</strong>
+<button onclick="addToCart('كابل HDMI 2.1 UGREEN 2M', 89)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="cables">
+<div class="prod-img">🔌</div>
+<div class="prod-body">
+<span class="prod-tag">وصلات</span>
+<h4 class="prod-name">كابل USB-C to USB-C</h4>
+<p class="prod-desc">كابل USB-C عالي السرعة، شحن 60W ونقل بيانات 10Gbps</p>
+<div class="prod-price">
+<strong>59 ر.س</strong>
+<button onclick="addToCart('كابل USB-C to USB-C', 59)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="cables">
+<div class="prod-img">🔌</div>
+<div class="prod-body">
+<span class="prod-tag">وصلات</span>
+<h4 class="prod-name">كابل DisplayPort 1.4</h4>
+<p class="prod-desc">كابل DisplayPort 1.4، يدعم 4K@144Hz</p>
+<div class="prod-price">
+<strong>79 ر.س</strong>
+<button onclick="addToCart('كابل DisplayPort 1.4', 79)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="cables">
+<div class="prod-img">🔌</div>
+<div class="prod-body">
+<span class="prod-tag">وصلات</span>
+<h4 class="prod-name">وصلة VGA to HDMI محول</h4>
+<p class="prod-desc">محول VGA إلى HDMI مع صوت، دعم دقة 1080p</p>
+<div class="prod-price">
+<strong>69 ر.س</strong>
+<button onclick="addToCart('وصلة VGA to HDMI محول', 69)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="projectors">
+<div class="prod-img">📽️</div>
+<div class="prod-body">
+<span class="prod-tag">بروجكتور</span>
+<h4 class="prod-name">بروجكتور Epson EB-E01 XGA</h4>
+<p class="prod-desc">بروجكتور Epson، سطوع 3300 لومن، دقة XGA</p>
+<div class="prod-price">
+<strong>1899 ر.س</strong>
+<button onclick="addToCart('بروجكتور Epson EB-E01 XGA', 1899)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="projectors">
+<div class="prod-img">📽️</div>
+<div class="prod-body">
+<span class="prod-tag">بروجكتور</span>
+<h4 class="prod-name">بروجكتور ViewSonic PA503W</h4>
+<p class="prod-desc">بروجكتور ViewSonic، سطوع 3600 لومن</p>
+<div class="prod-price">
+<strong>1499 ر.س</strong>
+<button onclick="addToCart('بروجكتور ViewSonic PA503W', 1499)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="projectors">
+<div class="prod-img">📽️</div>
+<div class="prod-body">
+<span class="prod-tag">بروجكتور</span>
+<h4 class="prod-name">بروجكتور BenQ MS560</h4>
+<p class="prod-desc">بروجكتور BenQ اقتصادي، سطوع 4000 لومن</p>
+<div class="prod-price">
+<strong>999 ر.س</strong>
+<button onclick="addToCart('بروجكتور BenQ MS560', 999)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="projectors">
+<div class="prod-img">📽️</div>
+<div class="prod-body">
+<span class="prod-tag">بروجكتور</span>
+<h4 class="prod-name">بروجكتور محمول Anker Nebula</h4>
+<p class="prod-desc">بروجكتور ذكي محمول، Android TV مدمج</p>
+<div class="prod-price">
+<strong>1299 ر.س</strong>
+<button onclick="addToCart('بروجكتور محمول Anker Nebula', 1299)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="accessories">
+<div class="prod-img">🎧</div>
+<div class="prod-body">
+<span class="prod-tag">إكسسوارات</span>
+<h4 class="prod-name">ماوس Logitech MX Master 3S</h4>
+<p class="prod-desc">ماوس احترافي لاسلكي، استشعار 8000 DPI</p>
+<div class="prod-price">
+<strong>399 ر.س</strong>
+<button onclick="addToCart('ماوس Logitech MX Master 3S', 399)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="accessories">
+<div class="prod-img">🎧</div>
+<div class="prod-body">
+<span class="prod-tag">إكسسوارات</span>
+<h4 class="prod-name">كيبورد Keychron K2</h4>
+<p class="prod-desc">كيبورد ميكانيكي لاسلكي 75%</p>
+<div class="prod-price">
+<strong>449 ر.س</strong>
+<button onclick="addToCart('كيبورد Keychron K2', 449)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="accessories">
+<div class="prod-img">🎧</div>
+<div class="prod-body">
+<span class="prod-tag">إكسسوارات</span>
+<h4 class="prod-name">سماعات JBL Tune 760NC</h4>
+<p class="prod-desc">سماعات رأس لاسلكية مع إلغاء الضوضاء النشط</p>
+<div class="prod-price">
+<strong>349 ر.س</strong>
+<button onclick="addToCart('سماعات JBL Tune 760NC', 349)">أضف للسلة</button>
+</div>
+</div>
+</div>
+<div class="prod-card" data-category="accessories">
+<div class="prod-img">🎧</div>
+<div class="prod-body">
+<span class="prod-tag">إكسسوارات</span>
+<h4 class="prod-name">هاب USB 3.0 Anker 7-Port</h4>
+<p class="prod-desc">هاب USB 3.0 بـ 7 منافذ، سرعة نقل 5Gbps</p>
+<div class="prod-price">
+<strong>149 ر.س</strong>
+<button onclick="addToCart('هاب USB 3.0 Anker 7-Port', 149)">أضف للسلة</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+<div class="container">
+<div class="about-grid">
+<div class="about-text">
+<h3>(شركة درة فارس الشمال للتجارة)</h3>
+<p>شركة رائدة في مجال بيع المنتجات التقنية والإلكترونية. نقدم لعملائنا أفضل المنتجات من أشهر الماركات العالمية بأسعار تنافسية وخدمة ما بعد البيع متميزة.</p>
+<p>نؤمن بأن التقنية يجب أن تكون متاحة للجميع، ولذلك نحرص على توفير منتجات عالية الجودة تناسب جميع الاحتياجات والميزانيات.</p>
+<div class="features">
+<div class="feature">
+<i>🛡️</i>
+<div>
+<h4>ضمان شامل</h4>
+<p>ضمان على جميع المنتجات</p>
+</div>
+</div>
+<div class="feature">
+<i>🚚</i>
+<div>
+<h4>توصيل سريع</h4>
+<p>توصيل لجميع المناطق</p>
+</div>
+</div>
+<div class="feature">
+<i>🎧</i>
+<div>
+<h4>دعم فني</h4>
+<p>دعم على مدار الساعة</p>
+</div>
+</div>
+<div class="feature">
+<i>🏷️</i>
+<div>
+<h4>أفضل الأسعار</h4>
+<p>أسعار تنافسية مضمونة</p>
+</div>
+</div>
+</div>
+</div>
+<div class="about-stats">
+<div class="stat-card">
+<i>🏆</i>
+<strong>+10 سنوات</strong>
+<span>خبرة في السوق</span>
+</div>
+<div class="stat-card">
+<i>👥</i>
+<strong>+500</strong>
+<span>عميل سعيد</span>
+</div>
+<div class="stat-card">
+<i>📦</i>
+<strong>+1000</strong>
+<span>منتج متاح</span>
+</div>
+<div class="stat-card">
+<i>⭐</i>
+<strong>4.9/5</strong>
+<span>تقييم العملاء</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+<div class="container">
+<h3>نحن هنا لمساعدتك</h3>
+<div class="contact-grid">
+<div class="contact-info">
+<div class="info-card">
+<i>📞</i>
+<h4>اتصل بنا</h4>
+<p>متاحون للرد على استفساراتكم</p>
+<a href="tel:+966500000000">+966 50 000 0000</a>
+</div>
+<div class="info-card">
+<i>💬</i>
+<h4>واتساب</h4>
+<p>رد سريع على رسائلك</p>
+<a href="https://wa.me/966500000000" target="_blank">+966 50 000 0000</a>
+</div>
+<div class="info-card">
+<i>✉️</i>
+<h4>البريد الإلكتروني</h4>
+<p>أرسل لنا بريدك في أي وقت</p>
+<a href="mailto:info@dorafares.com">info@dorafares.com</a>
+</div>
+<div class="info-card">
+<i>📍</i>
+<h4>الموقع</h4>
+<p>المملكة العربية السعودية</p>
+</div>
+</div>
+<div class="contact-form">
+<form onsubmit="handleSubmit(event)">
+<div class="form-row">
+<input type="text" placeholder="الاسم الكامل" required>
+<input type="tel" placeholder="رقم الجوال" required>
+</div>
+<input type="email" placeholder="البريد الإلكتروني" required style="margin-bottom:15px">
+<select style="margin-bottom:15px">
+<option value="">اختر الموضوع</option>
+<option value="order">طلب منتج</option>
+<option value="inquiry">استفسار عام</option>
+<option value="support">دعم فني</option>
+<option value="complaint">شكوى</option>
+</select>
+<textarea placeholder="اكتب رسالتك هنا..." required></textarea>
+<button type="submit">📨 إرسال الرسالة</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col">
+<h4>(شركة درة فارس الشمال للتجارة)</h4>
+<p>وجهتك الأولى لكل ما يتعلق بالتقنية. نقدم منتجات عالية الجودة بأسعار تنافسية.</p>
+<div class="social">
+<a href="#">𝕏</a>
+<a href="#">📷</a>
+<a href="#">f</a>
+<a href="#">in</a>
+</div>
+</div>
+<div class="footer-col">
+<h4>روابط سريعة</h4>
+<ul>
+<li><a href="#home">الرئيسية</a></li>
+<li><a href="#products">المنتجات</a></li>
+<li><a href="#about">عن الشركة</a></li>
+<li><a href="#contact">تواصل معنا</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>التصنيفات</h4>
+<ul>
+<li><a href="#products">طابعات</a></li>
+<li><a href="#products">كمبيوتر</a></li>
+<li><a href="#products">رامات</a></li>
+<li><a href="#products">هاردات</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>طرق الدفع</h4>
+<p>💳 Visa &nbsp; 💳 Mastercard &nbsp; 💳 Apple Pay</p>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2024 (شركة درة فارس الشمال للتجارة). جميع الحقوق محفوظة.</p>
+<div>
+<a href="#" style="margin-left:15px">سياسة الخصوصية</a>
+<a href="#">شروط الاستخدام</a>
+</div>
+</div>
+</div>
+</footer>
+
+<!-- Cart Sidebar -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+<div class="cart-header">
+<h3>🛒 سلة المشتريات</h3>
+<button class="close-cart" onclick="toggleCart()">✕</button>
+</div>
+<div class="cart-items" id="cartItems">
+<div class="cart-empty">
+<i>🛒</i>
+<p>السلة فارغة</p>
+<small>أضف منتجات لبدء التسوق</small>
+</div>
+</div>
+<div class="cart-footer">
+<div class="cart-total">
+<span>المجموع:</span>
+<strong id="cartTotal">0 ر.س</strong>
+</div>
+<button class="checkout-btn" onclick="checkout()">
+💬 اطلب الآن عبر واتساب
+</button>
+</div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+<i>✅</i>
+<span id="toastMsg">تمت الإضافة للسلة</span>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('doraCart')) || [];
+
+function addToCart(name, price) {
+    const existing = cart.find(item => item.name === name);
+    if (existing) {
+        existing.qty++;
+    } else {
+        cart.push({name, price, qty: 1});
+    }
+    localStorage.setItem('doraCart', JSON.stringify(cart));
+    updateCartUI();
+    showToast('تمت إضافة ' + name + ' للسلة');
+}
+
+function removeFromCart(name) {
+    cart = cart.filter(item => item.name !== name);
+    localStorage.setItem('doraCart', JSON.stringify(cart));
+    updateCartUI();
+}
+
+function updateQty(name, change) {
+    const item = cart.find(item => item.name === name);
+    if (item) {
+        item.qty += change;
+        if (item.qty <= 0) removeFromCart(name);
+        else localStorage.setItem('doraCart', JSON.stringify(cart));
+        updateCartUI();
+    }
+}
+
+function updateCartUI() {
+    const count = cart.reduce((sum, item) => sum + item.qty, 0);
+    document.getElementById('cartCount').textContent = count;
+
+    const itemsDiv = document.getElementById('cartItems');
+    if (cart.length === 0) {
+        itemsDiv.innerHTML = '<div class="cart-empty"><i>🛒</i><p>السلة فارغة</p><small>أضف منتجات لبدء التسوق</small></div>';
+    } else {
+        itemsDiv.innerHTML = cart.map(item => `
+            <div class="cart-item">
+                <div class="cart-item-icon">📦</div>
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">${item.price} ر.س</div>
+                    <div class="cart-item-qty">
+                        <button class="qty-btn" onclick="updateQty('${item.name}', -1)">−</button>
+                        <span>${item.qty}</span>
+                        <button class="qty-btn" onclick="updateQty('${item.name}', 1)">+</button>
+                        <span class="remove-item" onclick="removeFromCart('${item.name}')">🗑️</span>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    document.getElementById('cartTotal').textContent = total.toLocaleString() + ' ر.س';
+}
+
+function toggleCart() {
+    const overlay = document.getElementById('cartOverlay');
+    const sidebar = document.getElementById('cartSidebar');
+    if (sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+        overlay.style.display = 'none';
+    } else {
+        sidebar.classList.add('open');
+        overlay.style.display = 'block';
+    }
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        showToast('السلة فارغة! أضف منتجات أولاً');
+        return;
+    }
+    let msg = '*طلب جديد من (شركة درة فارس الشمال للتجارة)*\n\n';
+    msg += '*المنتجات:*\n';
+    cart.forEach((item, i) => {
+        msg += `${i+1}. ${item.name}\n   الكمية: ${item.qty}\n   السعر: ${item.price} ر.س\n   المجموع: ${item.price*item.qty} ر.س\n\n`;
+    });
+    const total = cart.reduce((s, i) => s + i.price*i.qty, 0);
+    msg += `*المجموع الكلي: ${total.toLocaleString()} ر.س*\n\nيرجى تأكيد الطلب.`;
+    window.open('https://wa.me/966500000000?text=' + encodeURIComponent(msg), '_blank');
+}
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function filterProducts(cat) {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', 
+            (cat === 'all' && btn.textContent === 'الكل') ||
+            (cat === 'printers' && btn.textContent === 'طابعات') ||
+            (cat === 'computers' && btn.textContent === 'كمبيوتر') ||
+            (cat === 'ram' && btn.textContent === 'رامات') ||
+            (cat === 'storage' && btn.textContent === 'هاردات') ||
+            (cat === 'cables' && btn.textContent === 'وصلات') ||
+            (cat === 'projectors' && btn.textContent === 'بروجكتور') ||
+            (cat === 'accessories' && btn.textContent === 'إكسسوارات')
+        );
+    });
+
+    document.querySelectorAll('.prod-card').forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+function handleSubmit(e) {
+    e.preventDefault();
+    showToast('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً');
+    e.target.reset();
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartUI();
+});
+</script>
+</body>
+</html>
